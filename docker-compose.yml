@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    container_name: isitjustme_postgres
+    environment:
+      POSTGRES_USER: isitjustme
+      POSTGRES_PASSWORD: isitjustme_secret
+      POSTGRES_DB: isitjustme
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./apps/api/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U isitjustme']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: isitjustme_redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.6
+    container_name: isitjustme_meilisearch
+    environment:
+      MEILI_MASTER_KEY: isitjustme_meili_key
+      MEILI_ENV: development
+    ports:
+      - '7700:7700'
+    volumes:
+      - meilisearch_data:/meili_data
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:7700/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:
+  meilisearch_data:

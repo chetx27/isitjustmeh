@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg:        #FAFAF8;
+    --surface:   #FFFFFF;
+    --border:    #E8E6E0;
+    --ink:       #0D0D0D;
+    --muted:     #6B6B6B;
+    --accent:    #FF6B00;
+    --ok:        #16A34A;
+    --degraded:  #CA8A04;
+    --outage:    #DC2626;
+  }
+
+  body {
+    @apply bg-[var(--bg)] text-[var(--ink)] font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .font-disp {
+    font-family: var(--font-syne), sans-serif;
+  }
+  .font-body {
+    font-family: var(--font-dm-sans), sans-serif;
+  }
+  .font-mono {
+    font-family: var(--font-jetbrains-mono), monospace;
+  }
+}
