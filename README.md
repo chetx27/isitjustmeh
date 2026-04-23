@@ -1,4 +1,4 @@
-# Is It Just Me? 🇮🇳
+# Is It Just Me?
 
 > India's real-time, crowdsourced outage detection platform.
 > One tap. Zero login. Instant answer.
@@ -46,4 +46,4 @@ pnpm dev
 | Services tracked    | 150+   |
 
 ## Privacy
-We do not store IP addresses. All IPs are hashed with a daily salt. We only extract broad geolocation data (state level) for regional outage heatmaps.
+NO IP addresses. All IPs are hashed with a daily salt. Only extract broad geolocation data (state level) for regional outage heatmaps.
