@@ -7,7 +7,7 @@
 1. User reports "Jio is down for me" with one tap
 2. We aggregate anonymous reports by service + state
 3. When reports spike 5× baseline → outage declared
-4. Everyone sees it in real-time via WebSocket push
+4. Everyone sees it in real time via WebSocket push
 
 ## Stack
 Next.js 14 · Fastify · PostgreSQL + TimescaleDB · Redis · Socket.io · Meilisearch
